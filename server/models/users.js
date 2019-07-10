@@ -11,23 +11,23 @@ let userSchema = new Schema({
     required: true
   },
   email: {
-      type: String,
-      required: true
+    type: String,
+    required: true
   },
   password: {
-      type: String,
-      required: true
+    type: String,
+    required: true
   },
   isActive: {
-      type: Boolean,
-      default: true
+    type: Boolean,
+    default: true
   },
   createdOn: {
-      type: Date,
-      default: Date.now
+    type: Date,
+    default: Date.now
   }
 })
 
-const User = mongoose.model('User', userSchema )
+const User = mongoose.model('User', userSchema)
 
 module.exports = User

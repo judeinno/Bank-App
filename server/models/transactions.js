@@ -12,12 +12,12 @@ let transactionSchema = new Schema({
     required: true
   },
   description: {
-      type: String,
-      required: true
+    type: String,
+    required: true
   },
   charge: {
-      type: Number,
-      default: 0
+    type: Number,
+    default: 0
   },
   deposit: {
     type: Number,
@@ -28,11 +28,11 @@ let transactionSchema = new Schema({
     default: ''
   },
   createdOn: {
-      type: Date,
-      default: Date.now
+    type: Date,
+    default: Date.now
   }
 })
 
-const Transaction = mongoose.model('Transaction', TransactionSchema )
+const Transaction = mongoose.model('Transaction', transactionSchema)
 
 module.exports = Transaction
