@@ -122,6 +122,7 @@ export default {
   methods: {
     saveTransaction: function () {
       console.log('Saving transaction record:')
+      this.$store.dispatch('saveTransaction', this.transaction)
       this.dialog = false
     },
     showEditTransactionDialog: function () {
@@ -141,6 +142,5 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style>
 </style>

@@ -78,7 +78,7 @@ module.exports = router => {
 
   // Create new transaction document...
   router.post('/transaction', (req, res) => {
-    let date = new Date(req.body.transactionDate.replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"))
+    let date = new Date(req.body.transactionDate.replace(/(\d{2})-(\d{2})-(\d{4})/, '$2/$1/$3'))
 
     let doc = {
       transactionDate: date,
@@ -88,6 +88,7 @@ module.exports = router => {
       deposit: req.body.deposit,
 	    notes: req.body.notes
     }
+
     let transaction = new Transaction(doc)
     transaction.save((err, transaction) => {
       if (err) return console.log(err)
