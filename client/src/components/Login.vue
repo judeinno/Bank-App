@@ -43,7 +43,7 @@ export default {
   data () {
     return {
       showAlert: false,
-      loginError: '',
+      message: '',
       email: '',
       emailRules: [
         v => !!v || 'E-mail is required',
@@ -55,23 +55,35 @@ export default {
       passwordRules: [v => !!v || 'Password is required']
     }
   },
-  methods: {
-    login () {
-      if (this.password === 'test111') {
-        this.$router.push({ path: '/' })
-      } else {
-        this.showAlert = true
-        this.loginError = 'Email or Password is invalid'
-      }
+  computed: {
+    isLoggedIn () {
+      return this.$store.getters.isLoggedIn
     },
-    cancel () {
-      this.showAlert = true
-      this.loginError = 'User does not want to login'
+    loginError () {
+      return this.$store.getters.loginError
+    }
+  },
+  methods: {
+    login: function () {
+      const vm = this
+      const payload = {
+        email: this.email,
+        password: this.password
+      }
+      this.$store.dispatch('logInUser', payload).then(() => {
+        if (vm.isLoggedIn) {
+          this.$router.push({ path: '/' })
+        } else {
+          vm.showAlert = true
+        }
+      })
+    },
+    cancel: function () {
+      console.log('The user does not want to login!')
     }
   }
 }
 </script>
 
-<style scoped>
-
+<style>
 </style>

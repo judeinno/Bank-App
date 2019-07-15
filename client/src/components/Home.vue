@@ -96,12 +96,18 @@
 <script>
 import Transactions from './Transactions.vue'
 import EditTransaction from './EditTransactions.vue'
-
+import HeaderActions from './HeaderActions.vue'
 export default {
   name: 'Home',
   components: {
     Transactions,
-    EditTransaction
+    EditTransaction,
+    HeaderActions
+  },
+  computed: {
+    isLoggedIn () {
+      return this.$store.getters.isLoggedIn
+    }
   },
   data: () => ({
     dialog: false,
@@ -121,6 +127,12 @@ export default {
     },
     showProfile: function () {
       console.log('show profile clicked!')
+    }
+  },
+  mounted: function () {
+    console.log('Is user logged in? ', this.isLoggedIn)
+    if (!this.isLoggedIn) {
+      this.$router.push({ path: '/login' })
     }
   }
 }
